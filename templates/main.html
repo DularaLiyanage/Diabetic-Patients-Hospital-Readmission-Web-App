@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patient Readmission Prediction</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="static/stylesheet.css" />
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Readmission Predictor</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Horizontal Form -->
+  <div class="container mt-5">
+    <h2>
+      <center>Patient Readmission Prediction</center>
+    </h2>
+    <br>
+    <form action="/predict" method="POST" class="row g-3">
+      <!-- Normal Details Section -->
+      <fieldset class="border p-3 mt-3">
+        <legend class="w-auto">Normal Details</legend>
+
+        <div class="row">
+
+          <!-- Race -->
+          <div class="col-md-4">
+            <label for="race" class="form-label">Race</label>
+            <select id="race" name="race" class="form-select" required>
+              <option value="">Choose...</option>
+              <option value="Caucasian">Caucasian</option>
+              <option value="AfricanAmerican">AfricanAmerican</option>
+              <option value="Hispanic">Hispanic</option>
+              <option value="Asian">Asian</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <!-- Gender -->
+          <div class="col-md-4">
+            <label for="gender" class="form-label">Gender</label>
+            <select id="gender" name="gender" class="form-select" required>
+              <option value="">Choose...</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+
+          <!-- Age -->
+          <div class="col-md-4">
+            <label for="age" class="form-label">Age</label>
+            <select type="number" class="form-control" id="age" name="age" required>
+              <option value="">Choose...</option>
+              <option value="[0-10)">0-10</option>
+              <option value="[10-20)">10-20</option>
+              <option value="[20-30)">20-30</option>
+              <option value="[30-40)">30-40</option>
+              <option value="[40-50)">40-50</option>
+              <option value="[50-60)">50-60</option>
+              <option value="[60-70)">60-70</option>
+              <option value="[70-80)">70-80</option>
+              <option value="[80-90)">80-90</option>
+              <option value="[90-100)">90-100</option>
+            </select>
+          </div>
+
+          <!-- Admission Type -->
+          <div class="col-md-4">
+            <label for="admission_type_id" class="form-label">Admission Type</label>
+            <select id="admission_type_id" name="admission_type_id" class="form-select" required>
+              <option value="">Choose...</option>
+              <option value="1">Discharged to home</option>
+              <option value="2">Discharged/transferred to another short-term hospital</option>
+              <option value="3">Discharged/transferred to a skilled nursing facility</option>
+              <option value="4">Discharged/transferred to Intermediate Care Facility (ICF)</option>
+              <option value="5">Discharged/transferred to another type of institution</option>
+              <option value="6">Discharged/transferred to home with home health service</option>
+              <option value="7">Left against medical advice</option>
+              <option value="8">Discharged/transferred to home under care of home IV provider</option>
+              <option value="9">Admitted as an inpatient to this hospital</option>
+              <option value="10">Discharged/transferred to psychiatric hospital</option>
+              <option value="11">Discharged/transferred to another rehabilitation facility</option>
+              <option value="12">Discharged/transferred to long-term care hospital</option>
+              <option value="13">Expired</option>
+              <option value="15">Hospice, home care</option>
+              <option value="16">Hospice, medical facility</option>
+              <option value="17">Discharged/transferred to a swing bed</option>
+              <option value="18">Expired at home</option>
+              <option value="19">Expired in a medical facility</option>
+              <option value="20">Expired, place unknown</option>
+              <option value="22">Expired (Medicare Part A)</option>
+              <option value="23">Discharged/transferred to an unknown destination</option>
+              <option value="24">Discharged/transferred to federal healthcare facility</option>
+              <option value="25">Expired (Medicaid patient)</option>
+              <option value="26">Discharged/transferred to Intermediate Care Facility (not under Medicare)</option>
+              <option value="27">Expired (hospice)</option>
+              <option value="28">Discharged/transferred to Critical Access Hospital (CAH)</option>
+            </select>
+          </div>
+
+          <!-- Discharge Disposition -->
+          <div class="col-md-4">
+            <label for="discharge_disposition_id" class="form-label">Discharge Disposition</label>
+            <select id="discharge_disposition_id" name="discharge_disposition_id" class="form-select" required>
+              <option value="">Choose...</option>
+              <option value="1">Emergency</option>
+              <option value="2">Urgent</option>
+              <option value="3">Elective</option>
+              <option value="4">Newborn</option>
+              <option value="5">Trauma</option>
+              <option value="6">Not Available</option>
+              <option value="7">Not Mapped (NULL)</option>
+              <option value="8">Other</option>
+            </select>
+          </div>
+
+          <!-- Admission Source -->
+          <div class="col-md-4">
+            <label for="admission_source_id" class="form-label">Admission Source</label>
+            <select id="admission_source_id" name="admission_source_id" class="form-select" required>
+              <option value="">Choose...</option>
+              <option value="1">Physician Referral</option>
+              <option value="2">Clinic Referral</option>
+              <option value="3">HMO Referral</option>
+              <option value="4">Transfer from a hospital (Different facility)</option>
+              <option value="5">Transfer from a Skilled Nursing Facility (SNF)</option>
+              <option value="6">Transfer from another health care facility</option>
+              <option value="7">Emergency Room</option>
+              <option value="8">Court/Law Enforcement</option>
+              <option value="9">Not Available</option>
+              <option value="10">Transfer from a critical access hospital</option>
+              <option value="11">Transfer from another health care facility</option>
+              <option value="12">Transfer from a hospital-based Medicare-approved swing bed</option>
+              <option value="13">Transfer from an intermediate care facility (ICF)</option>
+              <option value="14">Transfer from a custodial care facility</option>
+              <option value="15">Transfer from a psychiatric hospital</option>
+              <option value="16">Transfer from a rehabilitation facility</option>
+              <option value="17">Transfer from a long-term care hospital</option>
+              <option value="18">Transfer from another inpatient rehabilitation facility</option>
+              <option value="19">Transfer from an ambulatory surgery center</option>
+              <option value="20">Transfer from hospice</option>
+              <option value="21">Transfer from a federal health care facility</option>
+              <option value="22">Transfer from another facility not defined elsewhere</option>
+              <option value="23">Transfer from a nursing facility with Medicare certification but not classified as a
+                skilled nursing facility (SNF)</option>
+              <option value="24">Transfer from a hospice facility</option>
+              <option value="25">Unknown or not mapped</option>
+            </select>
+          </div>
+          
+          <!-- Time in Hospital -->
+          <div class="col-md-4">
+            <label for="time_in_hospital" class="form-label">Time In Hospital</label>
+            <select type="number" class="form-control" id="time_in_hospital" name="time_in_hospital" required>
+              <option value="">Choose...</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+            </select>
+          </div>
+
+          <!-- Num Lab Procedurse -->
+          <div class="col-md-4">
+            <label for="num_lab_procedures" class="form-label">Number Lab Procedurse</label>
+            <input type="number" class="form-control" id="num_lab_procedures" name="num_lab_procedures" min="1"
+              max="114" step="1" value="0" />
+          </div>
+
+          <!-- Num of Procedurse -->
+          <div class="col-md-4">
+            <label for="num_procedures" class="form-label">Number of Procedurse</label>
+            <input type="number" class="form-control" id="num_procedures" name="num_procedures" min="0" max="6" step="1"
+              value="0" />
+          </div>
+
+          <!-- Num Medications -->
+          <div class="col-md-4">
+            <label for="num_medications" class="form-label">Number Medications</label>
+            <input type="number" class="form-control" id="num_medications" name="num_medications" min="0" max="75"
+              step="1" value="0" />
+          </div>
+
+          <!-- Number Outpatient -->
+          <div class="col-md-4">
+            <label for="number_outpatient" class="form-label">Number Outpatient</label>
+            <input type="number" class="form-control" id="number_outpatient" name="number_outpatient" min="0" max="36"
+              step="1" value="0" />
+          </div>
+
+          <!-- Number emergency -->
+          <div class="col-md-4">
+            <label for="number_emergency" class="form-label">Number Emergency</label>
+            <input type="number" class="form-control" id="number_emergency" name="number_emergency" min="0" max="25"
+              step="1" value="0" />
+          </div>
+
+          <!-- Number inpatient -->
+          <div class="col-md-4">
+            <label for="number_inpatient" class="form-label">Number Inpatient</label>
+            <input type="number" class="form-control" id="number_inpatient" name="number_inpatient" min="0" max="19"
+              step="1" value="0" />
+          </div>
+
+        </div>
+      </fieldset>
+
+      <!-- Diagnoses Fieldset -->
+      <fieldset class="border p-3 mt-3">
+        <legend class="w-auto">Diagnoses</legend>
+        <div class="row">
+
+          <!-- Diagnosis 1 -->
+          <div class="col-md-4">
+            <label for="diag_1" class="form-label">Diagnosis 1</label>
+            <input type="text" class="form-control" id="diag_1" name="diag_1" required/>
+          </div>
+
+          <!-- Diagnosis 2 -->
+          <div class="col-md-4">
+            <label for="diag_2" class="form-label">Diagnosis 2</label>
+            <input type="text" class="form-control" id="diag_2" name="diag_2" required/>
+          </div>
+
+          <!-- Diagnosis 3 -->
+          <div class="col-md-4">
+            <label for="diag_3" class="form-label">Diagnosis 3</label>
+            <input type="number" class="form-control" id="diag_3" name="diag_3" required/>
+          </div>
+
+          <!-- Number Diagnoses -->
+          <div class="col-md-4">
+            <label for="number_diagnoses" class="form-label">Number Diagnosest</label>
+            <input type="number" class="form-control" id="number_diagnoses" name="number_diagnoses" min="0" max="16"
+              step="1" value="0" />
+          </div>
+
+        </div>
+      </fieldset>
+
+      <!-- Test Fieldset -->
+      <fieldset class="border p-3 mt-3">
+        <legend class="w-auto">Tests</legend>
+        <div class="row">
+
+          <!-- Max Glu Serum -->
+          <div class="col-md-4">
+            <label for="max_glu_serum" class="form-label">Max Glu Serum</label>
+            <select id="max_glu_serum" name="max_glu_serum" class="form-select" required>
+              <option value="">Choose...</option>
+              <option value="none">None</option>
+              <option value=">300">>300</option>
+              <option value=">200">>200</option>
+              <option value="Norm">Normal</option>
+            </select>
+          </div>
+
+          <!-- A1Cresult -->
+          <div class="col-md-4">
+            <label for="A1Cresult" class="form-label">A1Cresult</label>
+            <select id="A1Cresult" name="A1Cresult" class="form-select" required>
+              <option value="">Choose...</option>
+              <option value=">7">>7</option>
+              <option value=">8">>8</option>
+              <option value="Norm">Normal</option>
+              <option value="none">None</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <!--drugs-->
+      <!-- Medication Dropdown -->
+      <fieldset class="border p-3 mt-3">
+        <legend class="w-auto">Drugs</legend>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <label for="metformin" class="form-label">Metformin</label>
+            <select id="metformin" name="metformin" class="form-select" required>
+              <option value="">Choose...</option>
+              <option value="Steady">Steady</option>
+              <option value="Down">Down</option>
+              <option value="Up">Up</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <label for="glimepiride" class="form-label">Glimepiride</label>
+            <select id="glimepiride" name="glimepiride" class="form-select" required>
+              <option value="">Choose...</option>
+              <option value="Steady">Steady</option>
+              <option value="Down">Down</option>
+              <option value="Up">Up</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <label for="glipizide" class="form-label">Glipizide</label>
+            <select id="glipizide" name="glipizide" class="form-select" required>
+              <option value="">Choose...</option>
+              <option value="Steady">Steady</option>
+              <option value="Down">Down</option>
+              <option value="Up">Up</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <label for="glyburide" class="form-label">Glyburide</label>
+            <select id="glyburide" name="glyburide" class="form-select" required>
+              <option value="">Choose...</option>
+              <option value="Steady">Steady</option>
+              <option value="Down">Down</option>
+              <option value="Up">Up</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <label for="pioglitazone" class="form-label">Pioglitazone</label>
+            <select id="pioglitazone" name="pioglitazone" class="form-select" required>
+              <option value="">Choose...</option>
+              <option value="Steady">Steady</option>
+              <option value="Down">Down</option>
+              <option value="Up">Up</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <label for="rosiglitazone" class="form-label">Rosiglitazone</label>
+            <select id="rosiglitazone" name="rosiglitazone" class="form-select" required>
+              <option value="">Choose...</option>
+              <option value="Steady">Steady</option>
+              <option value="Down">Down</option>
+              <option value="Up">Up</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <label for="insulin" class="form-label">Insulin</label>
+            <select id="insulin" name="insulin" class="form-select" required>
+              <option value="">Choose...</option>
+              <option value="Steady">Steady</option>
+              <option value="Down">Down</option>
+              <option value="Up">Up</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Medicine Fieldset -->
+      <fieldset class="border p-3 mt-3">
+        <legend class="w-auto">Medicine Changes</legend>
+        <div class="row">
+
+          <!-- Medicine Change -->
+          <div class="col-md-4">
+            <label for="medicinech" class="form-label">Medicine Change</label>
+            <select id="medicinech" name="medicinech" class="form-select" required>
+              <option value="">Choose...</option>
+              <option value="Ch">Change</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <!-- Diabetes Medicine -->
+          <div class="col-md-4">
+            <label for="diabetesMed" class="form-label">Diabetes Medicine</label>
+            <select id="diabetesMed" name="diabetesMed" class="form-select" required>
+              <option value="">Choose...</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="col-12 text-center mt-4">
+        <button type="submit" class="btn btn-primary btn-lg px-5">Predict</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-light text-center text-lg-start mt-5">
+    <div class="container p-4">
+      <p class="text-center">
+        © 2024 Readmission Predictor | All Rights Reserved
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

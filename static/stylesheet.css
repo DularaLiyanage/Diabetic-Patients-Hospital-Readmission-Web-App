@@ -1,0 +1,6 @@
+/* Increase the font size of the brand name */
+.navbar-brand {
+    font-size: 1.6rem; /* Adjust the value as needed */
+    font-weight: bold; /* Optionally make the text bold */
+    padding-left: 30px;
+}
