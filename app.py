@@ -7,6 +7,7 @@ from sklearn.preprocessing import OrdinalEncoder, OneHotEncoder
 import joblib
 
 app = Flask(__name__)
+application = app
 
 with open('xgb_model.pkl', 'rb') as file:
     xgb_model = pickle.load(file)
