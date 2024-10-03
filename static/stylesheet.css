@@ -1,6 +1,50 @@
 /* Increase the font size of the brand name */
 .navbar-brand {
-    font-size: 1.6rem; /* Adjust the value as needed */
-    font-weight: bold; /* Optionally make the text bold */
+    font-size: 1.6rem;
+    /* Adjust the value as needed */
+    font-weight: bold;
+    /* Optionally make the text bold */
     padding-left: 30px;
+}
+
+/* Custom navbar background color */
+.custom-navbar {
+    background-color: #38393c;
+}
+
+/* Custom title color */
+.custom-title {
+    color: white;
+}
+
+/* Optional: Adjust other styles like link hover if needed */
+.navbar-brand:hover {
+    color: #dddddd;
+}
+
+/* Custom footer background color */
+.custom-footer {
+    background-color: #38393c !important;
+    color: white !important;
+  }
+
+/* Style the result text */
+.container .result-text {
+    font-size: 2rem;
+    margin-bottom: 1.5rem; /* Make the text larger */
+    margin-top: 100px;
+}
+
+.probability-text {
+    margin-top: 1rem; /* Space above the probability text */
+    margin-bottom: 1.5rem;
+}
+
+/* Center the prediction probability text inside the custom container */
+.container .text-center p {
+    margin: 0;
+}
+
+.btn-secondary {
+    margin-top: 2rem; /* Space above the button */
 }

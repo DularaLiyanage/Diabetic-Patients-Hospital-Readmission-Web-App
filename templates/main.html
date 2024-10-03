@@ -11,9 +11,9 @@
 
 <body>
   <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg custom-navbar">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Readmission Predictor</a>
+      <a class="navbar-brand custom-title" href="#">Readmission Predictor</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -90,6 +90,22 @@
             <label for="admission_type_id" class="form-label">Admission Type</label>
             <select id="admission_type_id" name="admission_type_id" class="form-select" required>
               <option value="">Choose...</option>
+              <option value="1">Emergency</option>
+              <option value="2">Urgent</option>
+              <option value="3">Elective</option>
+              <option value="4">Newborn</option>
+              <option value="5">Trauma</option>
+              <option value="6">Not Available</option>
+              <option value="7">Not Mapped (NULL)</option>
+              <option value="8">Other</option>
+            </select>
+          </div>
+
+          <!-- Discharge Disposition -->
+          <div class="col-md-4">
+            <label for="discharge_disposition_id" class="form-label">Discharge Disposition</label>
+            <select id="discharge_disposition_id" name="discharge_disposition_id" class="form-select" required>
+              <option value="">Choose...</option>
               <option value="1">Discharged to home</option>
               <option value="2">Discharged/transferred to another short-term hospital</option>
               <option value="3">Discharged/transferred to a skilled nursing facility</option>
@@ -116,22 +132,6 @@
               <option value="26">Discharged/transferred to Intermediate Care Facility (not under Medicare)</option>
               <option value="27">Expired (hospice)</option>
               <option value="28">Discharged/transferred to Critical Access Hospital (CAH)</option>
-            </select>
-          </div>
-
-          <!-- Discharge Disposition -->
-          <div class="col-md-4">
-            <label for="discharge_disposition_id" class="form-label">Discharge Disposition</label>
-            <select id="discharge_disposition_id" name="discharge_disposition_id" class="form-select" required>
-              <option value="">Choose...</option>
-              <option value="1">Emergency</option>
-              <option value="2">Urgent</option>
-              <option value="3">Elective</option>
-              <option value="4">Newborn</option>
-              <option value="5">Trauma</option>
-              <option value="6">Not Available</option>
-              <option value="7">Not Mapped (NULL)</option>
-              <option value="8">Other</option>
             </select>
           </div>
 
@@ -168,27 +168,12 @@
               <option value="25">Unknown or not mapped</option>
             </select>
           </div>
-          
+
           <!-- Time in Hospital -->
           <div class="col-md-4">
             <label for="time_in_hospital" class="form-label">Time In Hospital</label>
-            <select type="number" class="form-control" id="time_in_hospital" name="time_in_hospital" required>
-              <option value="">Choose...</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-              <option value="14">14</option>
-            </select>
+            <input type="number" class="form-control" id="time_in_hospital" name="time_in_hospital" min="0"
+              max="100" step="1" value="0" required/>
           </div>
 
           <!-- Num Lab Procedurse -->
@@ -244,19 +229,19 @@
           <!-- Diagnosis 1 -->
           <div class="col-md-4">
             <label for="diag_1" class="form-label">Diagnosis 1</label>
-            <input type="text" class="form-control" id="diag_1" name="diag_1" required/>
+            <input type="text" class="form-control" id="diag_1" name="diag_1" required />
           </div>
 
           <!-- Diagnosis 2 -->
           <div class="col-md-4">
             <label for="diag_2" class="form-label">Diagnosis 2</label>
-            <input type="text" class="form-control" id="diag_2" name="diag_2" required/>
+            <input type="text" class="form-control" id="diag_2" name="diag_2" required />
           </div>
 
           <!-- Diagnosis 3 -->
           <div class="col-md-4">
             <label for="diag_3" class="form-label">Diagnosis 3</label>
-            <input type="number" class="form-control" id="diag_3" name="diag_3" required/>
+            <input type="text" class="form-control" id="diag_3" name="diag_3" required />
           </div>
 
           <!-- Number Diagnoses -->
@@ -279,10 +264,10 @@
             <label for="max_glu_serum" class="form-label">Max Glu Serum</label>
             <select id="max_glu_serum" name="max_glu_serum" class="form-select" required>
               <option value="">Choose...</option>
-              <option value="none">None</option>
               <option value=">300">>300</option>
               <option value=">200">>200</option>
               <option value="Norm">Normal</option>
+              <option value="none">None</option>
             </select>
           </div>
 

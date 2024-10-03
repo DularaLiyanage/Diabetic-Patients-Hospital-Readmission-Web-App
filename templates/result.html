@@ -6,21 +6,22 @@
     <title>Prediction Result</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/stylesheet.css" />
 </head>
 <body>
     <div class="container mt-5">
-        <div class="card">
+        <div class="card custom-card-width">
             <div class="card-header text-center bg-primary text-white">
                 <h2>Prediction Result</h2>
             </div>
             <div class="card-body text-center">
-                <p class="lead">{{ result }}</p>
+                <p class="result-text">{{ result }}</p>
+                <p class="probability-text mt-3">Prediction Probability: <strong>{{ probability if probability is not none else "N/A" }}%</strong></p>
                 <a href="/" class="btn btn-secondary mt-4">Go Back</a>
             </div>
-            <p class="mt-3">Prediction Probability: <strong>{{ probability if probability is not none else "N/A" }}</strong></p>
         </div>
-    </div>
-
+    </div>    
+             
     <!-- Bootstrap JS and dependencies (optional for interactivity) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
