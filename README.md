@@ -1,0 +1,1 @@
+ Implemented a machine learning model with web application to predict the likelihood of readmission for diabetic patients using classification techniques. The project involved working with a public dataset, performing data preprocessing (data cleaning, feature engineering, and analytics), and optimizing the model for accurate predictions
